@@ -3,9 +3,11 @@
     "version": "0.1.0",
     "slug": "music_assistant_proxy",
     "description": "Proxy to connect Music Assistant to Home Assistant.",
+    "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "startup": "services",
     "boot": "auto",
+    "init": true,
     "host_network": true,
     "panel_iframe": {
         "title": "Music Assistant",
