@@ -1,14 +1,22 @@
+# Use an official base image
 FROM alpine:latest
 
-# Install nginx
-RUN apk add --no-cache nginx bash
+# Set environment variables
+ENV MUSIC_ASSISTANT_HOST=0.0.0.0
+ENV MUSIC_ASSISTANT_PORT=8095
 
-# Copy the custom nginx configuration file
+# Install necessary packages
+RUN apk add --no-cache nginx
+
+# Copy configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY run.sh /usr/local/bin/run.sh
 
-# Copy the run script and make it executable
-COPY run.sh /run.sh
-RUN chmod +x /run.sh
+# Make the run script executable
+RUN chmod +x /usr/local/bin/run.sh
 
-# Run the entrypoint script
-ENTRYPOINT [ "/run.sh" ]
+# Expose the port
+EXPOSE 8095
+
+# Run the application
+CMD ["/usr/local/bin/run.sh"]
