@@ -1,12 +1,14 @@
-# Use an Alpine base image for a lightweight container
 FROM alpine:latest
 
-# Install required packages
+# Install nginx
 RUN apk add --no-cache nginx bash
 
-# Copy the configuration files
+# Copy the custom nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy the run script and make it executable
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-# Configure entry point
+# Run the entrypoint script
 ENTRYPOINT [ "/run.sh" ]
