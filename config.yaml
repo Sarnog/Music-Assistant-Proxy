@@ -1,0 +1,28 @@
+name: "Music Assistant Proxy"
+description: "Proxy to connect Music Assistant to Home Assistant."
+version: "0.1.0"
+slug: "music_assistant_proxy"
+init: false
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+startup: services
+boot: auto
+host_network: true,
+panel_iframe: {
+  title: "Music Assistant",
+  icon: "mdi:music",
+  url: "http://[HOST_IP]:[HOST_PORT]"
+
+options:
+  music_assistant_host: "0.0.0.0"
+  music_assistant_port: 8095
+schema:
+  music_assistant_host: str
+  music_assistant_port: int
+ports:
+  8095/tcp: 8095
+
