@@ -1,0 +1,24 @@
+{
+    "name": "Music Assistant Proxy",
+    "version": "0.1.0",
+    "slug": "music_assistant_proxy",
+    "description": "Proxy for Music Assistant in Home Assistant",
+    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+    "startup": "services",
+    "boot": "auto",
+    "host_network": true,
+    "options": {
+        "music_assistant_host": "192.168.x.x",
+        "music_assistant_port": 8095
+    },
+    "schema": {
+        "music_assistant_host": "str",
+        "music_assistant_port": "int"
+    },
+    "ports": {
+        "8095/tcp": 8095
+    },
+    "ports_description": {
+        "8095/tcp": "Proxy port for Music Assistant"
+    }
+}
