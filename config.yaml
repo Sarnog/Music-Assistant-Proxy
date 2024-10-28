@@ -1,0 +1,21 @@
+name: Music Assistant Proxy
+version: '1.0'
+slug: music_assistant_proxy
+description: A proxy for Music Assistant
+arch:
+  - amd64
+  - armhf
+  - armv7
+  - aarch64
+homepage: https://github.com/Sarnog/Music-Assistant-Proxy
+documentation: https://github.com/Sarnog/Music-Assistant-Proxy
+maintainer: Sarnog <info@sarnog.nl>
+resources:
+  - /api
+  - /status
+options:
+  target_ip: "192.168.1.72"
+  target_port: "8095"
+schema:
+  target_ip: str
+  target_port: str
