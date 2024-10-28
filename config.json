@@ -7,8 +7,13 @@
     "startup": "services",
     "boot": "auto",
     "host_network": true,
+    "panel_iframe": {
+        "title": "Music Assistant",
+        "icon": "mdi:music",
+        "url": "http://[HOST_IP]:[HOST_PORT]"
+    },
     "options": {
-        "music_assistant_host": "192.168.x.x",
+        "music_assistant_host": "192.168.1.100",
         "music_assistant_port": 8095
     },
     "schema": {
