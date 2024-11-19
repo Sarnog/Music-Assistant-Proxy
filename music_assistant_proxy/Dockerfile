@@ -3,7 +3,9 @@ FROM python:3.11-alpine
 # Install required packages
 RUN apk add --no-cache \
     nginx \
-    bash
+    bash \
+    gettext \
+    libintl
 
 # Set working directory
 WORKDIR /app
@@ -22,6 +24,14 @@ RUN chmod a+x /app/run.sh && \
 # Install Python packages
 RUN python -m pip install --no-cache-dir aiohttp websockets
 
+# Install bashio
+ARG BASHIO_VERSION="0.14.3"
+RUN mkdir -p /tmp/bashio \
+    && curl -L -s https://github.com/hassio-addons/bashio/archive/v${BASHIO_VERSION}.tar.gz \
+    | tar -xzf - --strip 1 -C /tmp/bashio \
+    && mv /tmp/bashio/lib /usr/lib/bashio \
+    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio
+
 # Labels
 LABEL \
     io.hass.name="Music Assistant Proxy" \
@@ -30,4 +40,5 @@ LABEL \
     io.hass.version="1.0.0" \
     io.hass.arch="armhf|armv7|aarch64|amd64|i386"
 
+ENTRYPOINT ["/init"]
 CMD [ "/app/run.sh" ]
