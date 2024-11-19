@@ -25,7 +25,7 @@ ports_description:
 options:
   server: "http://localhost:8095"
 schema:
-  server: "str"
-watchdog: "http://[HOST]:[PORT:8095]/"
-webui: "http://[HOST]:[PORT:8095]/"
+  server: "match(^https?://.+:\\d+$)"
+watchdog: "http://[HOST]:8095/health"
+webui: "http://[HOST]:8095"
 stage: "stable"
