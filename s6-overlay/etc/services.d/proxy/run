@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+# Redirect stderr to stdout
+exec 2>&1
+
+# Execute run script
+exec /app/run.sh
