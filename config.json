@@ -35,6 +35,5 @@
   "schema": {
     "server_ip": "str",
     "server_port": "int"
-  },
-  "image": "ghcr.io/sarnog/{arch}-addon-music_assistant_proxy"
+  }
 }
