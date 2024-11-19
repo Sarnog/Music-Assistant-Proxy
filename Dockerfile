@@ -13,10 +13,13 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
-# Setup base
+# Make scripts executable
 RUN \
-    chmod a+x /etc/s6-overlay/s6-rc.d/*/run \
-    && chmod a+x /etc/s6-overlay/s6-rc.d/*/finish
+    chmod a+x /etc/services.d/proxy/run \
+    && chmod a+x /etc/services.d/proxy/finish \
+    && chmod a+x /etc/services.d/nginx/run \
+    && chmod a+x /etc/services.d/nginx/finish \
+    && chmod a+x /app/proxy.py
 
 # Labels
 LABEL \
