@@ -1,11 +1,14 @@
 ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.3.2
 FROM ${BUILD_FROM}
 
-RUN apk add --no-cache nginx
+RUN apk add --no-cache \
+    nginx \
+    gettext
 
 COPY rootfs /
 
-RUN chmod a+x /etc/services.d/nginx/run
+RUN chmod a+x /etc/services.d/nginx/run \
+    && chmod a+x /etc/services.d/nginx/finish
 
 LABEL \
     io.hass.name="Music Assistant Proxy" \
