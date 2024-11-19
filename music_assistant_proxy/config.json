@@ -17,7 +17,8 @@
   "ingress_port": 8095,
   "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
-  "startup": "application",
+  "startup": "services",
+  "boot": "auto",
   "options": {
     "server_ip": "",
     "server_port": 8095
@@ -28,5 +29,8 @@
   },
   "ports": {
     "8095/tcp": 8095
+  },
+  "ports_description": {
+    "8095/tcp": "Music Assistant Web Interface"
   }
 }
