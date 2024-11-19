@@ -1,19 +1,16 @@
 #!/usr/bin/with-contenv bashio
-# ==============================================================================
-# Start nginx service
-# ==============================================================================
 
 # Get config values
 declare server
-export server=$(bashio::config 'server')
+server=$(bashio::config 'server')
 
-bashio::log.info "Starting NGinx..."
+bashio::log.info "Starting Music Assistant Proxy..."
 bashio::log.info "Server URL: ${server}"
 
-# Validate server URL
-if ! bashio::config.has_value 'server'; then
-    bashio::log.error "No server URL configured"
-    bashio::exit.nok
-fi
+# Create required directories
+mkdir -p /var/log/nginx
+mkdir -p /var/lib/nginx/tmp
+chown nginx:nginx /var/lib/nginx/tmp
 
+# Start Nginx
 exec nginx
