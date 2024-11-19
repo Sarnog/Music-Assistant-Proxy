@@ -1,7 +1,7 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the proxy service
+# ==============================================================================
 
-# Redirect stderr to stdout
-exec 2>&1
-
-# Execute run script
+bashio::log.info "Starting Music Assistant Proxy service..."
 exec /app/run.sh
