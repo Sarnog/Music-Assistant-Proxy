@@ -1,10 +1,9 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11-alpine3.19
-FROM ${BUILD_FROM}
+FROM python:3.11-alpine
 
 # Install required packages
-RUN \
-    apk add --no-cache \
-        nginx
+RUN apk add --no-cache \
+    nginx \
+    bash
 
 # Set working directory
 WORKDIR /app
@@ -20,8 +19,8 @@ RUN chmod a+x /app/run.sh && \
     chmod a+x /etc/services.d/proxy/run && \
     chmod a+x /etc/services.d/proxy/finish
 
-# Install Python packages directly
-RUN pip3 install --no-cache-dir aiohttp websockets
+# Install Python packages
+RUN python -m pip install --no-cache-dir aiohttp websockets
 
 # Labels
 LABEL \
