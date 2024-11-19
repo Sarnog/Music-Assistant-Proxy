@@ -1,7 +1,4 @@
-#!/usr/bin/with-contenv bash
-
-# Enable job control
-set -m
+#!/usr/bin/with-contenv bashio
 
 # Configure bash to log everything
 exec 1> >(logger -s -t $(basename $0)) 2>&1
