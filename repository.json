@@ -1,4 +1,5 @@
 {
-    "name": "Music Assistant Proxy Repository",
-    "url": "https://github.com/Sarnog/Music-Assistant-Proxy"
+  "name": "Music Assistant Proxy Add-on Repository",
+  "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
+  "maintainer": "Sarnog <info@sarnog.nl>"
 }
