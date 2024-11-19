@@ -11,14 +11,16 @@
     "amd64",
     "i386"
   ],
-  "init": false,
+  "init": true,
+  "startup": "application",
+  "boot": "auto",
   "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
   "ingress_port": 8095,
   "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
-  "startup": "application",
-  "boot": "auto",
+  "hassio_api": true,
+  "hassio_role": "default",
   "options": {
     "server_ip": "",
     "server_port": 8095
@@ -32,8 +34,5 @@
   },
   "ports_description": {
     "8095/tcp": "Music Assistant Web Interface"
-  },
-  "hassio_api": true,
-  "hassio_role": "default",
-  "stage": "stable"
+  }
 }
