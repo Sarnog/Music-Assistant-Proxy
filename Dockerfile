@@ -9,8 +9,8 @@ RUN \
 
 # Copy files
 COPY nginx.conf.gtpl /etc/nginx/templates/
-COPY run.sh /
-RUN chmod a+x /run.sh
+COPY entrypoint.sh /
+RUN chmod a+x /entrypoint.sh
 
 # Labels
 LABEL \
@@ -18,4 +18,5 @@ LABEL \
     io.hass.description="Proxy voor Music Assistant met Web Interface" \
     io.hass.type="addon"
 
-CMD [ "/run.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["nginx", "-g", "daemon off;"]
