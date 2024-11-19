@@ -1,7 +1,4 @@
 #!/usr/bin/with-contenv bashio
-# ==============================================================================
-# Start the proxy service
-# ==============================================================================
 
 bashio::log.info "Starting Music Assistant Proxy..."
 
@@ -19,6 +16,5 @@ bashio::log.info "Configuration loaded:"
 bashio::log.info "Server IP: ${SERVER_IP}"
 bashio::log.info "Server Port: ${SERVER_PORT}"
 
-# Start the proxy
 cd /app
 exec python3 proxy.py --server-ip "${SERVER_IP}" --server-port "${SERVER_PORT}"
