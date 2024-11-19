@@ -2,28 +2,31 @@
   "name": "Music Assistant Proxy",
   "version": "1.0.0",
   "slug": "music_assistant_proxy",
-  "description": "A proxy for Music Assistant.",
+  "description": "Proxy voor Music Assistant met Web Interface",
+  "url": "https://github.com/YourUsername/Music-Assistant-Proxy",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "init": false,
+  "webui": "http://[HOST]:[PORT:8095]",
+  "ingress": true,
+  "ingress_port": 8095,
+  "panel_icon": "mdi:music",
+  "panel_title": "Music Assistant",
   "startup": "application",
-  "boot": "auto",
   "options": {
-    "music_assistant_host": "192.168.1.72",
-    "music_assistant_port": 8095
+    "server_ip": "",
+    "server_port": 8095
   },
   "schema": {
-    "music_assistant_host": "str",
-    "music_assistant_port": "int"
+    "server_ip": "str",
+    "server_port": "int"
   },
-  "panel_custom": {
-    "name": "music_assistant_proxy",
-    "url_path": "music_assistant_proxy",
-    "sidebar_title": "Music Assistant",
-    "sidebar_icon": "mdi:music",
-    "module_url": "/static/music_assistant_proxy/music_assistant_proxy.js"
-  },
-  "arch": ["amd64", "armhf", "armv7"],
-  "image": "sarnog/music-assistant-proxy",
-  "webui": "http://[HOST]:[PORT]",
   "ports": {
-    "80/tcp": 80
+    "8095/tcp": 8095
   }
 }
