@@ -11,22 +11,15 @@ arch:
   - i386
 startup: application
 boot: auto
-webui: "http://[HOST]:[PORT:8095]/"
-watchdog: "http://[HOST]:[PORT:8095]/"
 ingress: true
 ingress_port: 8095
-ingress_entry: /
 panel_icon: "mdi:music"
 panel_title: "Music Assistant"
 ports:
   8095/tcp: 8095
 ports_description:
-  8095/tcp: "Web interface (Not required for Hass.io Ingress)"
+  8095/tcp: "Music Assistant Web Interface"
 options:
   server: "http://localhost:8095"
-  proxy_pass_host: true
-  proxy_pass_real_ip: true
 schema:
-  server: "match(^https?://.+:\\d+$)"
-  proxy_pass_host: bool
-  proxy_pass_real_ip: bool
+  server: "str"
