@@ -4,7 +4,8 @@ FROM ${BUILD_FROM}
 # Install requirements for add-on
 RUN \
     apk add --no-cache \
-        nginx
+        nginx \
+        gettext
 
 # Copy root filesystem
 COPY rootfs /
@@ -22,12 +23,3 @@ LABEL \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
     maintainer="Sarnog <info@sarnog.nl>"
-
-# Build arguments
-ARG BUILD_ARCH
-ARG BUILD_DATE
-ARG BUILD_DESCRIPTION
-ARG BUILD_NAME
-ARG BUILD_REF
-ARG BUILD_REPOSITORY
-ARG BUILD_VERSION
