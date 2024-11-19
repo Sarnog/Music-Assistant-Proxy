@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "slug": "music_assistant_proxy",
   "description": "Proxy voor Music Assistant met Web Interface",
+  "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
   "arch": [
     "aarch64",
     "amd64",
@@ -10,12 +11,11 @@
     "armv7",
     "i386"
   ],
-  "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
-  "startup": "services",
+  "startup": "application",
   "boot": "auto",
-  "init": false,
   "ingress": true,
   "ingress_port": 8095,
+  "ingress_entry": "/",
   "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
   "host_network": true,
@@ -26,13 +26,11 @@
     "8095/tcp": "Music Assistant Web Interface"
   },
   "options": {
-    "server": "http://localhost:8095"
+    "server_host": "localhost",
+    "server_port": 8095
   },
   "schema": {
-    "server": "str"
-  },
-  "webui": "http://[HOST]:[PORT:8095]",
-  "hassio_api": true,
-  "hassio_role": "default",
-  "stage": "stable"
+    "server_host": "str",
+    "server_port": "int"
+  }
 }
