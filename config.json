@@ -12,7 +12,9 @@
     "i386"
   ],
   "init": true,
-  "startup": "services",
+  "hassio_api": true,
+  "hassio_role": "default",
+  "startup": "application",
   "boot": "auto",
   "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
