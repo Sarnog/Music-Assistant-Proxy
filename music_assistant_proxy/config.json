@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "slug": "music_assistant_proxy",
   "description": "Proxy voor Music Assistant met Web Interface",
-  "url": "https://github.com/YourUsername/Music-Assistant-Proxy",
+  "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
   "arch": [
     "armhf",
     "armv7",
