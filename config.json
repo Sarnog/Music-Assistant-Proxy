@@ -12,10 +12,11 @@
     "i386"
   ],
   "init": true,
+  "stage": "stable",
+  "startup": "services",
+  "boot": "auto",
   "hassio_api": true,
   "hassio_role": "default",
-  "startup": "application",
-  "boot": "auto",
   "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
   "ingress_port": 8095,
@@ -34,5 +35,6 @@
   "schema": {
     "server_ip": "str",
     "server_port": "int"
-  }
+  },
+  "image": "ghcr.io/sarnog/{arch}-addon-music_assistant_proxy"
 }
