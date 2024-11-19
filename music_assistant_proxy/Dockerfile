@@ -2,7 +2,14 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Install required packages
-RUN apk add --no-cache python3 py3-pip nginx
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    nginx \
+    gcc \
+    python3-dev \
+    musl-dev \
+    linux-headers
 
 # Copy your application
 WORKDIR /app
@@ -14,6 +21,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN chmod a+x /app/run.sh
 
 # Install Python requirements
-RUN pip3 install websockets aiohttp
+RUN pip3 install --no-cache-dir websockets aiohttp
 
 CMD [ "/app/run.sh" ]
