@@ -1,8 +1,11 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bashio
 
-# Haal de configuratie-instellingen op uit de Home Assistant configuratie
-export MUSIC_ASSISTANT_HOST=$(bashio::config 'music_assistant_host')
-export MUSIC_ASSISTANT_PORT=$(bashio::config 'music_assistant_port')
+# Get config values
+SERVER_IP=$(bashio::config 'server_ip')
+SERVER_PORT=$(bashio::config 'server_port')
 
-# Start Nginx met de nieuwe omgevingsvariabelen
-nginx -g 'daemon off;'
+# Start nginx
+nginx
+
+# Start the proxy
+python3 /app/proxy.py --server-ip "$SERVER_IP" --server-port "$SERVER_PORT"
