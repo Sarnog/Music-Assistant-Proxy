@@ -15,9 +15,12 @@ COPY rootfs /
 COPY proxy.py .
 COPY run.sh .
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY s6-overlay /etc
 
-# Make scripts executable
-RUN chmod a+x /app/run.sh
+# Make all necessary scripts executable
+RUN chmod a+x /app/run.sh && \
+    chmod a+x /etc/services.d/proxy/run && \
+    chmod a+x /etc/services.d/proxy/finish
 
 # Create and activate virtual environment
 RUN python -m venv /opt/venv
@@ -25,9 +28,6 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # Install Python packages
 RUN pip install --no-cache-dir websockets==12.0 aiohttp==3.9.1
-
-# S6-Overlay
-COPY s6-overlay/etc /etc
 
 # Labels
 LABEL \
