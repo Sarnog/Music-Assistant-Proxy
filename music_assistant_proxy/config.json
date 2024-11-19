@@ -18,6 +18,7 @@
   "ingress_port": 8095,
   "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
+  "host_network": true,
   "ports": {
     "8095/tcp": 8095
   },
@@ -29,5 +30,9 @@
   },
   "schema": {
     "server": "str"
-  }
+  },
+  "webui": "http://[HOST]:[PORT:8095]",
+  "hassio_api": true,
+  "hassio_role": "default",
+  "stage": "stable"
 }
