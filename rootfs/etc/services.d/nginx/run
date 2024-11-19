@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start NGINX service
+# ==============================================================================
+
+bashio::log.info "Starting NGinx..."
+
+# Get config values for nginx
+export SERVER_IP=$(bashio::config 'server_ip')
+export SERVER_PORT=$(bashio::config 'server_port')
+
+# Replace environment variables in nginx.conf
+envsubst '$SERVER_IP $SERVER_PORT' < /etc/nginx/nginx.conf > /etc/nginx/nginx.conf.tmp
+mv /etc/nginx/nginx.conf.tmp /etc/nginx/nginx.conf
+
+exec nginx -g "daemon off;"
