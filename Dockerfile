@@ -6,8 +6,9 @@ RUN \
     apk add --no-cache \
         nginx
 
-# Copy root filesystem
-COPY rootfs /
+# Copy files
+COPY nginx.conf.gtpl /etc/nginx/nginx.conf.gtpl
+COPY entrypoint.sh /entrypoint.sh
 
 # Setup base
 WORKDIR /opt
