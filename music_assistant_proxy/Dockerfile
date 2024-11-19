@@ -11,11 +11,10 @@ RUN apk add --no-cache \
 WORKDIR /app
 
 # Copy application files
-COPY rootfs /
 COPY proxy.py .
 COPY run.sh .
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY s6-overlay /etc
+COPY s6-overlay/etc /etc
 
 # Make all necessary scripts executable
 RUN chmod a+x /app/run.sh && \
