@@ -35,5 +35,16 @@
     "server_port": "port"
   },
   "stage": "stable",
-  "startup": "services"
+  "startup": "application",
+  "boot": "auto",
+  "advanced": true,
+  "uart": false,
+  "audio": false,
+  "video": false,
+  "gpio": false,
+  "privileged": [],
+  "apparmor": true,
+  "map": [],
+  "environment": {},
+  "timeout": 30
 }
