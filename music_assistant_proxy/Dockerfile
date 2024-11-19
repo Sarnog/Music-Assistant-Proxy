@@ -1,4 +1,5 @@
-FROM python:3.11-alpine
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11-alpine3.19
+FROM ${BUILD_FROM}
 
 # Install required packages
 RUN apk add --no-cache \
@@ -21,12 +22,8 @@ RUN chmod a+x /app/run.sh && \
     chmod a+x /etc/services.d/proxy/run && \
     chmod a+x /etc/services.d/proxy/finish
 
-# Create and activate virtual environment
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
 # Install Python packages
-RUN pip install --no-cache-dir websockets==12.0 aiohttp==3.9.1
+RUN pip3 install --no-cache-dir websockets==12.0 aiohttp==3.9.1
 
 # Labels
 LABEL \
@@ -36,4 +33,5 @@ LABEL \
     io.hass.version="1.0.0" \
     io.hass.arch="armhf|armv7|aarch64|amd64|i386"
 
-ENTRYPOINT ["/init"]
+# Use Home Assistant default entrypoint
+CMD [ "/app/run.sh" ]
