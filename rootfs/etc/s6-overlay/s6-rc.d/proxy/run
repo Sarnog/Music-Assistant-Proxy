@@ -1,4 +1,7 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
+# ==============================================================================
+# Start the proxy service
+# ==============================================================================
 
 bashio::log.info "Starting Music Assistant Proxy..."
 
