@@ -11,26 +11,18 @@
     "armv7",
     "i386"
   ],
-  "startup": "application",
-  "boot": "auto",
+  "init": false,
+  "hassio_api": true,
+  "hassio_role": "default",
+  "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
   "ingress_port": 8095,
-  "ingress_entry": "/",
   "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
-  "host_network": true,
   "ports": {
     "8095/tcp": 8095
   },
   "ports_description": {
     "8095/tcp": "Music Assistant Web Interface"
-  },
-  "options": {
-    "server_host": "localhost",
-    "server_port": 8095
-  },
-  "schema": {
-    "server_host": "str",
-    "server_port": "int"
   }
 }
