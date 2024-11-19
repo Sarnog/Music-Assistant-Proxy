@@ -1,9 +1,9 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 
-# Configure bash to log everything
-exec 1> >(logger -s -t $(basename $0)) 2>&1
+# Enable error logging
+set -e
 
-echo "Starting Music Assistant Proxy..."
+bashio::log.info "Starting Music Assistant Proxy..."
 
 # Get config values
 if bashio::config.has_value "server_ip"; then
@@ -29,4 +29,4 @@ nginx
 
 # Start the proxy
 bashio::log.info "Starting proxy..."
-python3 /app/proxy.py --server-ip "$SERVER_IP" --server-port "$SERVER_PORT"
+exec python3 /app/proxy.py --server-ip "$SERVER_IP" --server-port "$SERVER_PORT"
