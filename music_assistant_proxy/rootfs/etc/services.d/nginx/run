@@ -1,16 +1,21 @@
 #!/usr/bin/with-contenv bashio
 
 # Get config values
-declare server
-server=$(bashio::config 'server')
+export SERVER_HOST=$(bashio::config 'server_host')
+export SERVER_PORT=$(bashio::config 'server_port')
 
 bashio::log.info "Starting Music Assistant Proxy..."
-bashio::log.info "Server URL: ${server}"
+bashio::log.info "Server Host: ${SERVER_HOST}"
+bashio::log.info "Server Port: ${SERVER_PORT}"
 
 # Create required directories
 mkdir -p /var/log/nginx
 mkdir -p /var/lib/nginx/tmp
 chown nginx:nginx /var/lib/nginx/tmp
 
+# Generate nginx config from template
+envsubst '$SERVER_HOST $SERVER_PORT' < /etc/nginx/nginx.conf > /tmp/nginx.conf
+mv /tmp/nginx.conf /etc/nginx/nginx.conf
+
 # Start Nginx
-exec nginx
+exec nginx -c /etc/nginx/nginx.conf
