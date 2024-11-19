@@ -22,3 +22,12 @@ LABEL \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
     maintainer="Sarnog <info@sarnog.nl>"
+
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_DESCRIPTION
+ARG BUILD_NAME
+ARG BUILD_REF
+ARG BUILD_REPOSITORY
+ARG BUILD_VERSION
