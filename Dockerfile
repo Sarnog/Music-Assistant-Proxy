@@ -1,27 +1,20 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/base:3.19
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11-alpine3.19
 FROM ${BUILD_FROM}
-
-# Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install required packages
 RUN \
     apk add --no-cache \
         nginx \
-        python3 \
-        py3-pip \
         py3-aiohttp \
         py3-websockets
 
 # Copy root filesystem
+WORKDIR /
 COPY rootfs /
 
 # Make scripts executable
-RUN \
-    chmod a+x /etc/services.d/proxy/run \
-    && chmod a+x /etc/services.d/proxy/finish \
-    && chmod a+x /etc/services.d/nginx/run \
-    && chmod a+x /etc/services.d/nginx/finish
+RUN chmod a+x /etc/s6-overlay/s6-rc.d/*/run \
+    && chmod a+x /etc/s6-overlay/s6-rc.d/*/finish
 
 # Labels
 LABEL \
