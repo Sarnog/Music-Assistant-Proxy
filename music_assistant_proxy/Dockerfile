@@ -1,11 +1,16 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11-alpine3.19
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
 FROM ${BUILD_FROM}
 
 # Install required packages
-RUN apk add --no-cache \
-    nginx \
-    gettext \
-    libintl
+RUN \
+    apk add --no-cache \
+        nginx \
+        gettext \
+        libintl \
+        python3 \
+        py3-pip \
+        py3-aiohttp \
+        py3-websockets
 
 # Set working directory
 WORKDIR /app
@@ -20,9 +25,6 @@ COPY s6-overlay/etc /etc
 RUN chmod a+x /app/run.sh && \
     chmod a+x /etc/services.d/proxy/run && \
     chmod a+x /etc/services.d/proxy/finish
-
-# Install Python packages
-RUN pip3 install --no-cache-dir aiohttp websockets
 
 # Labels
 LABEL \
