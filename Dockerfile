@@ -18,26 +18,23 @@ RUN \
     chmod a+x /etc/s6-overlay/s6-rc.d/*/run \
     && chmod a+x /etc/s6-overlay/s6-rc.d/*/finish
 
-# Build arguments
-ARG BUILD_ARCH
-ARG BUILD_DATE
-ARG BUILD_DESCRIPTION
-ARG BUILD_NAME
-ARG BUILD_REF
-ARG BUILD_REPOSITORY
-ARG BUILD_VERSION
-
 # Labels
 LABEL \
-    io.hass.name="${BUILD_NAME}" \
-    io.hass.description="${BUILD_DESCRIPTION}" \
-    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.name="Music Assistant Proxy" \
+    io.hass.description="Proxy voor Music Assistant met Web Interface" \
+    io.hass.arch="amd64" \
     io.hass.type="addon" \
-    io.hass.version=${BUILD_VERSION} \
+    io.hass.version="1.0.0" \
     maintainer="Sarnog" \
-    org.opencontainers.image.title="${BUILD_NAME}" \
-    org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
+    org.opencontainers.image.title="Music Assistant Proxy" \
+    org.opencontainers.image.description="Proxy voor Music Assistant met Web Interface" \
     org.opencontainers.image.vendor="Home Assistant Add-ons" \
     org.opencontainers.image.authors="Sarnog" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers
+    org.opencontainers.image.url="https://github.com/Sarnog" \
+    org.opencontainers.image.source="https://github.com/Sarnog/Music-Assistant-Proxy" \
+    org.opencontainers.image.documentation="https://github.com/Sarnog/Music-Assistant-Proxy/blob/main/README.md" \
+    org.opencontainers.image.version="1.0.0"
+
+# Start the proxy
+CMD [ "/app/run.sh" ]
