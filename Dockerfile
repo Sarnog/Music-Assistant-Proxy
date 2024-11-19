@@ -9,6 +9,11 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
+# Make scripts executable
+RUN \
+    chmod a+x /etc/services.d/nginx/run \
+    && chmod a+x /etc/services.d/nginx/finish
+
 # Labels
 LABEL \
     io.hass.name="Music Assistant Proxy" \
