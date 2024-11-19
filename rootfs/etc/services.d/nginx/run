@@ -1,3 +1,19 @@
 #!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start nginx service
+# ==============================================================================
+
+# Get config values
+declare server
+export server=$(bashio::config 'server')
+
 bashio::log.info "Starting NGinx..."
+bashio::log.info "Server URL: ${server}"
+
+# Validate server URL
+if ! bashio::config.has_value 'server'; then
+    bashio::log.error "No server URL configured"
+    bashio::exit.nok
+fi
+
 exec nginx
