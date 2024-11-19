@@ -1,14 +1,13 @@
-#!/usr/bin/with-contenv bashio
+#!/bin/sh
 
 echo "Starting Music Assistant Proxy..."
 
-# Print Python version and pip list for debugging
-python3 --version
-pip3 list
+# Activate virtual environment
+. /opt/venv/bin/activate
 
-# Get config values
-SERVER_IP=$(bashio::config 'server_ip')
-SERVER_PORT=$(bashio::config 'server_port')
+# Get config values (using environment variables since we're not using bashio)
+SERVER_IP=${SERVER_IP:-"localhost"}
+SERVER_PORT=${SERVER_PORT:-8095}
 
 echo "Configuration loaded:"
 echo "Server IP: $SERVER_IP"
@@ -20,4 +19,4 @@ nginx
 
 # Start the proxy
 echo "Starting proxy..."
-python3 /app/proxy.py --server-ip "$SERVER_IP" --server-port "$SERVER_PORT"
+python /app/proxy.py --server-ip "$SERVER_IP" --server-port "$SERVER_PORT"
