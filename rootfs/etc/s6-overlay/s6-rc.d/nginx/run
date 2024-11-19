@@ -1,4 +1,7 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
+# ==============================================================================
+# Start NGINX service
+# ==============================================================================
 
 bashio::log.info "Starting NGinx..."
 
