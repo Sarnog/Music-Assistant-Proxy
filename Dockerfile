@@ -4,11 +4,11 @@ FROM ${BUILD_FROM}
 # Install required packages
 RUN \
     apk add --no-cache \
-        nginx=1.24.0-r14 \
-        python3=3.11.8-r0 \
-        py3-pip=23.3.1-r0 \
-        py3-aiohttp=3.8.6-r0 \
-        py3-websockets=10.4-r3
+        nginx \
+        python3 \
+        py3-pip \
+        py3-aiohttp \
+        py3-websockets
 
 # Copy root filesystem
 COPY rootfs /
@@ -40,9 +40,4 @@ LABEL \
     org.opencontainers.image.vendor="Home Assistant Add-ons" \
     org.opencontainers.image.authors="Sarnog" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.url="https://github.com/Sarnog" \
-    org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \
-    org.opencontainers.image.documentation="https://github.com/${BUILD_REPOSITORY}/blob/main/README.md" \
-    org.opencontainers.image.created=${BUILD_DATE} \
-    org.opencontainers.image.revision=${BUILD_REF} \
-    org.opencontainers.image.version=${BUILD_VERSION}
+    org.opencontainers
