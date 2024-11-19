@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+declare exit_code=$1
+
+# Cleanup
+echo "Service stopped with exit code $exit_code"
