@@ -1,7 +1,23 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
 # ==============================================================================
 # Start the proxy service
 # ==============================================================================
 
-bashio::log.info "Starting Music Assistant Proxy service..."
-exec /app/run.sh
+bashio::log.info "Starting Music Assistant Proxy..."
+
+# Get config values
+if bashio::config.has_value "server_ip"; then
+    export SERVER_IP=$(bashio::config 'server_ip')
+else
+    bashio::log.error "Server IP is not configured"
+    exit 1
+fi
+
+export SERVER_PORT=$(bashio::config 'server_port')
+
+bashio::log.info "Configuration loaded:"
+bashio::log.info "Server IP: ${SERVER_IP}"
+bashio::log.info "Server Port: ${SERVER_PORT}"
+
+# Start the proxy
+exec python3 /app/proxy.py --server-ip "${SERVER_IP}" --server-port "${SERVER_PORT}"
