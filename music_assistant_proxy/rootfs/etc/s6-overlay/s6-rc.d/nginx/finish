@@ -1,1 +1,11 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Take down the S6 supervision tree when proxy fails
+# ==============================================================================
 
+if [[ "$1" -ne 0 ]] && [[ "$1" -ne 256 ]]; then
+  bashio::log.warning "Proxy service failed, halting add-on"
+  /run/s6/basedir/bin/halt
+fi
+
+bashio::log.info "Proxy service stopped, restarting..."
