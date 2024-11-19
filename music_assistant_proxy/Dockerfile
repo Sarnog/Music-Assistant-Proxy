@@ -1,9 +1,19 @@
-FROM homeassistant/amd64-base:latest
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-RUN apk add --no-cache nginx curl
+# Install required packages
+RUN apk add --no-cache python3 py3-pip nginx
 
-COPY run.sh /usr/bin/run
+# Copy your application
+WORKDIR /app
+COPY proxy.py .
+COPY run.sh .
 COPY nginx.conf /etc/nginx/nginx.conf
-RUN chmod +x /usr/bin/run
 
-CMD [ "/usr/bin/run" ]
+# Make scripts executable
+RUN chmod a+x /app/run.sh
+
+# Install Python requirements
+RUN pip3 install websockets aiohttp
+
+CMD [ "/app/run.sh" ]
