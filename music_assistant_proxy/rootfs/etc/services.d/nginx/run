@@ -9,7 +9,8 @@ bashio::log.info "Server Host: ${SERVER_HOST}"
 bashio::log.info "Server Port: ${SERVER_PORT}"
 
 # Generate nginx config from template
-envsubst '$SERVER_HOST $SERVER_PORT' < /etc/nginx/templates/nginx.conf > /etc/nginx/nginx.conf
+envsubst '$SERVER_HOST $SERVER_PORT' < /etc/nginx/nginx.conf > /tmp/nginx.conf
+mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 # Start Nginx
 exec nginx
