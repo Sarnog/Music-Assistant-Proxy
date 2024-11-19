@@ -1,5 +1,8 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.3.2
+ARG BUILD_FROM=ghcr.io/home-assistant/base:3.19
 FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install required packages
 RUN \
@@ -18,26 +21,11 @@ RUN \
     chmod a+x /etc/services.d/proxy/run \
     && chmod a+x /etc/services.d/proxy/finish \
     && chmod a+x /etc/services.d/nginx/run \
-    && chmod a+x /etc/services.d/nginx/finish \
-    && chmod a+x /app/proxy.py
+    && chmod a+x /etc/services.d/nginx/finish
 
 # Labels
 LABEL \
     io.hass.name="Music Assistant Proxy" \
     io.hass.description="Proxy voor Music Assistant met Web Interface" \
-    io.hass.arch="amd64" \
     io.hass.type="addon" \
-    io.hass.version="1.0.0" \
-    maintainer="Sarnog" \
-    org.opencontainers.image.title="Music Assistant Proxy" \
-    org.opencontainers.image.description="Proxy voor Music Assistant met Web Interface" \
-    org.opencontainers.image.vendor="Home Assistant Add-ons" \
-    org.opencontainers.image.authors="Sarnog" \
-    org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.url="https://github.com/Sarnog" \
-    org.opencontainers.image.source="https://github.com/Sarnog/Music-Assistant-Proxy" \
-    org.opencontainers.image.documentation="https://github.com/Sarnog/Music-Assistant-Proxy/blob/main/README.md" \
-    org.opencontainers.image.version="1.0.0"
-
-# Start the proxy
-CMD [ "/app/run.sh" ]
+    io.hass.version="1.0.0"
