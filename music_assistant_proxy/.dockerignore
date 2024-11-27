@@ -1,0 +1,5 @@
+# Exclude everything by default
+*
+# Include specific directories or files
+!icon/
+!icon/music_assistant.ico
