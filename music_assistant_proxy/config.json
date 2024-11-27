@@ -17,7 +17,7 @@
   "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
   "ingress_port": 8095,
-  "panel_icon": "/usr/share/hassio/icons/music_assistant.ico",
+  "panel_icon": "mdi:music",
   "panel_title": "Music Assistant",
   "host_network": true,
   "ports": {
