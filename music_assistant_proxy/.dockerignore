@@ -1,5 +1,8 @@
 # Exclude everything by default
 *
+
 # Include specific directories or files
 !icon/
 !icon/music_assistant.ico
+!rootfs/
+!rootfs/**  # This includes all subdirectories and files under rootfs
