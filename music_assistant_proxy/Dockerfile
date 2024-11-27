@@ -8,7 +8,8 @@ RUN apk add --no-cache \
 COPY rootfs /
 
 # Copy the custom icon to a standard location
-COPY music_assistant_proxy/icon/music_assistant.ico /usr/share/hassio/icons/music_assistant.ico
+COPY music_assistant_proxy/icon/music_assistant.ico /usr/share/hassio/addons/music_assistant_proxy/icon/music_assistant.ico
+
 
 RUN chmod a+x /etc/services.d/nginx/run \
     && chmod a+x /etc/services.d/nginx/finish
