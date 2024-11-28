@@ -1,6 +1,6 @@
 {
   "name": "Music Assistant Proxy",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "slug": "music_assistant_proxy",
   "description": "Proxy voor Music Assistant met Web Interface",
   "url": "https://github.com/Sarnog/Music-Assistant-Proxy",
