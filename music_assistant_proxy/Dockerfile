@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 RUN mkdir -p /icon
 
 # Copy the icon file
-COPY music_assistant_proxy/icon/music_assistant.ico /icon/music_assistant.ico
+COPY Music-Assistant-Proxy/music_assistant_proxy/icon/music_assistant.ico /icon/music_assistant.ico
 
 # Set permissions correctly
 RUN chmod 755 /icon/music_assistant.ico
