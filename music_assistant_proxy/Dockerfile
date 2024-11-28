@@ -5,11 +5,14 @@ RUN apk add --no-cache \
     nginx \
     gettext
 
-# Copy the necessary files and folders, including the icon
-COPY rootfs /
+# Ensure the /icon directory is created first
+RUN mkdir -p /icon
 
-# Set permissions for the /icon directory only after the copy command
-RUN mkdir -p /icon && cp -R /rootfs/icon/* /icon && chmod -R 755 /icon
+# Copy the icon file
+COPY music_assistant_proxy/icon/music_assistant.ico /icon/music_assistant.ico
+
+# Set permissions correctly
+RUN chmod 755 /icon/music_assistant.ico
 
 RUN chmod a+x /etc/services.d/nginx/run \
     && chmod a+x /etc/services.d/nginx/finish
