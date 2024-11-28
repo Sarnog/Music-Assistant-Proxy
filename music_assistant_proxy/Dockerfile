@@ -5,10 +5,11 @@ RUN apk add --no-cache \
     nginx \
     gettext
 
+# Copy the necessary files and folders, including the icon
 COPY rootfs /
 
-# Set permissions for the /icon directory
-RUN chmod -R 755 /icon
+# Set permissions for the /icon directory only after the copy command
+RUN mkdir -p /icon && cp -R /rootfs/icon/* /icon && chmod -R 755 /icon
 
 RUN chmod a+x /etc/services.d/nginx/run \
     && chmod a+x /etc/services.d/nginx/finish
