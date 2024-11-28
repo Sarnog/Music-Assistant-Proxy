@@ -1,24 +1,29 @@
-ARG BUILD_FROM
-ARG BUILD_VERSION
+# Base image
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.3.2
+FROM ${BUILD_FROM}
 
-# Basisimage
-FROM $BUILD_FROM
+# Install required packages
+RUN apk add --no-cache \
+    nginx \
+    gettext
 
-# Labels
-LABEL \
-    io.hass.version=$BUILD_VERSION \
-    io.hass.type="addon" \
-    io.hass.name="Music Assistant Proxy"
+# Copy all necessary files into the container
+COPY rootfs /
 
-# Kopieer bestanden
-COPY rootfs/ /
-COPY icon/music_assistant.ico /data/icon/music_assistant.ico
-
-# Zorg dat scripts uitvoerbaar zijn
+# Set execute permissions for the 'run' and 'finish' scripts
 RUN chmod +x /etc/services.d/nginx/run /etc/services.d/nginx/finish
 
-# Toegangspoorten
-EXPOSE 80
+# Set permissions for the 'icon' folder and all its contents
+RUN chmod -R 644 /icon && find /icon -type d -exec chmod 755 {} +
 
-# Startpunt
-CMD [ "/init" ]
+# Set permissions for the 'rootfs' directory
+RUN chmod -R 755 /rootfs
+
+# Expose the required port
+EXPOSE 8095
+
+# Label information
+LABEL \
+    io.hass.name="Music Assistant Proxy" \
+    io.hass.description="Proxy voor Music Assistant met Web Interface" \
+    io.hass.type="addon"
