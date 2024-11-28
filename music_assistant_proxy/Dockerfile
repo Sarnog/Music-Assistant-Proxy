@@ -1,8 +1,24 @@
-ENV SERVER_HOST=${SERVER_HOST}
-ENV SERVER_PORT=${SERVER_PORT}
+ARG BUILD_FROM
+ARG BUILD_VERSION
 
-COPY rootfs /
-COPY icon/music_assistant.ico /music_assistant_proxy/icon/music_assistant.ico
+# Basisimage
+FROM $BUILD_FROM
 
-RUN chmod a+x /etc/services.d/nginx/run \
-    && chmod a+x /etc/services.d/nginx/finish
+# Labels
+LABEL \
+    io.hass.version=$BUILD_VERSION \
+    io.hass.type="addon" \
+    io.hass.name="Music Assistant Proxy"
+
+# Kopieer bestanden
+COPY rootfs/ /
+COPY icon/music_assistant.ico /data/icon/music_assistant.ico
+
+# Zorg dat scripts uitvoerbaar zijn
+RUN chmod +x /etc/services.d/nginx/run /etc/services.d/nginx/finish
+
+# Toegangspoorten
+EXPOSE 80
+
+# Startpunt
+CMD [ "/init" ]
