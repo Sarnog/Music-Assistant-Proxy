@@ -8,7 +8,7 @@ Deze app zet een proxy op naar een **Music Assistant**-server die los van Home A
 
 - **server_host** — het IP-adres van je Music Assistant-server (bijvoorbeeld `192.168.0.72`).
 - **server_port** — de poort van je Music Assistant-server (standaard `8095`).
-- **Music Assistant token** *(optioneel)* — een langlevende token waarmee de app automatisch bij Music Assistant inlogt, zodat je achter Home Assistant Ingress **geen loginscherm** meer krijgt. Laat leeg om de gewone Music Assistant-login te gebruiken.
+- **Music Assistant token** *(vereist)* — een langlevende token waarmee de app de WebSocket-verbinding met Music Assistant authenticeert, zodat je achter Home Assistant Ingress **geen loginscherm** meer krijgt (ook met een los draaiende server). Zonder token krijg je de gewone ingress-login, die voor een losse server niet werkt.
 
 ### Automatisch inloggen (langlevende token)
 
@@ -19,7 +19,7 @@ Music Assistant vereist tegenwoordig een login. Draait je Music Assistant-server
 3. Ga in deze app naar het tabblad **Configuratie**, plak de token bij **Music Assistant token** en sla op.
 4. **Herstart** de app en ververs je browser (Ctrl+F5).
 
-De app stuurt de token dan bij elke verbinding mee (`Authorization: Bearer`), waardoor Music Assistant je automatisch herkent en er geen loginscherm meer verschijnt.
+De app authenticeert hiermee de WebSocket-verbinding met Music Assistant, waardoor je automatisch herkend wordt en er geen loginscherm meer verschijnt.
 
 > **Let op:** met een token ingesteld krijgt iedere Home Assistant-gebruiker die deze app kan openen toegang tot Music Assistant (via de gedeelde token). Omdat de zijbalk al een Home Assistant-login vereist, komt dit neer op "ingelogd in Home Assistant = toegang tot Music Assistant". De token verloopt na 1 jaar; maak dan een nieuwe aan.
 
@@ -49,7 +49,7 @@ This app sets up a proxy to a **Music Assistant** server that runs separately fr
 
 - **server_host** — the IP address of your Music Assistant server (for example `192.168.0.72`).
 - **server_port** — the port of your Music Assistant server (default `8095`).
-- **Music Assistant token** *(optional)* — a long-lived token that lets the app log in to Music Assistant automatically, so **no login screen** appears behind Home Assistant Ingress. Leave empty to use the regular Music Assistant login.
+- **Music Assistant token** *(required)* — a long-lived token the app uses to authenticate the WebSocket connection to Music Assistant, so **no login screen** appears behind Home Assistant Ingress (even with a standalone server). Without a token you get the regular ingress login, which does not work for a standalone server.
 
 ### Automatic login (long-lived token)
 
@@ -60,7 +60,7 @@ Music Assistant now requires a login. If your Music Assistant server runs separa
 3. In this app, open the **Configuration** tab, paste the token into **Music Assistant token** and save.
 4. **Restart** the app and refresh your browser (Ctrl+F5).
 
-The app then sends the token on every connection (`Authorization: Bearer`), so Music Assistant recognises you automatically and no login screen appears.
+The app then uses it to authenticate the WebSocket connection to Music Assistant, so you are recognised automatically and no login screen appears.
 
 > **Note:** with a token set, any Home Assistant user who can open this app gets access to Music Assistant (via the shared token). Since the sidebar already requires a Home Assistant login, this effectively means "logged in to Home Assistant = access to Music Assistant". The token expires after 1 year; create a new one when it does.
 

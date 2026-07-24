@@ -37,7 +37,7 @@ Music Assistant draait op een andere machine dan Home Assistant. Deze app zet ee
 
 - **server_host** — het IP-adres van je Music Assistant-server.
 - **server_port** — de poort van je Music Assistant-server (standaard `8095`).
-- **Music Assistant token** *(optioneel)* — een langlevende token uit je Music Assistant-**profielinstellingen**. Vul je die in, dan authenticeert de app elke verbinding automatisch en verschijnt er **geen loginscherm** achter Home Assistant Ingress. Laat leeg om de gewone Music Assistant-login te gebruiken.
+- **Music Assistant token** *(vereist)* — een langlevende token uit je Music Assistant-**profielinstellingen**. De app authenticeert hiermee de WebSocket-verbinding met Music Assistant, zodat er achter Home Assistant Ingress **geen loginscherm** verschijnt — ook met een los draaiende server. Zonder token krijg je de gewone ingress-login, die voor een losse server niet werkt.
 
 ### Steun dit project ☕
 
@@ -80,7 +80,7 @@ Music Assistant runs on a different machine than Home Assistant. This app sets u
 
 - **server_host** — the IP address of your Music Assistant server.
 - **server_port** — the port of your Music Assistant server (default `8095`).
-- **Music Assistant token** *(optional)* — a long-lived token from your Music Assistant **profile settings**. Enter it and the app authenticates every connection automatically, so **no login screen** appears behind Home Assistant Ingress. Leave empty to use the regular Music Assistant login.
+- **Music Assistant token** *(required)* — a long-lived token from your Music Assistant **profile settings**. The app uses it to authenticate the WebSocket connection to Music Assistant, so **no login screen** appears behind Home Assistant Ingress — even with a standalone server. Without a token you get the regular ingress login, which does not work for a standalone server.
 
 ### Support this project ☕
 

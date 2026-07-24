@@ -3,6 +3,36 @@
 Alle noemenswaardige wijzigingen aan deze app worden hier bijgehouden. /
 All notable changes to this app are documented here.
 
+## 2.0.0 – 2026-07-24
+
+### 🇳🇱 Nederlands
+
+**Gewijzigd**
+- De app authenticeert nu de **WebSocket-verbinding** met Music Assistant zelf, met jouw langlevende token. Daardoor logt de web-frontend achter Home Assistant Ingress automatisch in en verschijnt er **geen loginscherm** meer — óók met een los draaiende Music Assistant-server. (De token-header uit 1.2.0 dekte alleen de REST-kant; de eigenlijke login gebeurt in de WebSocket, en die wordt nu afgehandeld.)
+- Nieuwe interne opzet: naast nginx draait een kleine **Python-bridge** die uitsluitend `/ws` afhandelt, de MA-verbinding vooraf met de token authenticeert en de rest transparant doorgeeft.
+
+**Vereist**
+- Vul de **Music Assistant token** in (langlevende token uit je MA-profielinstellingen). Zonder token valt de app terug op de gewone ingress-login, die voor een losse server niet werkt.
+
+**Terugvallen**
+- De vorige, pure nginx-proxy (v1.2.0) staat op de branch [`legacy-nginx-proxy`](https://github.com/Sarnog/Music-Assistant-Proxy/tree/legacy-nginx-proxy). Lost Music Assistant het ingress-probleem bovenstroom op, dan kun je daarnaartoe terugswitchen.
+
+**Toepassen:** werk bij naar 2.0.0, controleer dat je token is ingevuld, herstart de app en ververs je browser (Ctrl+F5).
+
+### 🇬🇧 English
+
+**Changed**
+- The app now authenticates the **WebSocket connection** to Music Assistant itself, using your long-lived token. As a result the web frontend logs in automatically behind Home Assistant Ingress and **no login screen** appears — even with a standalone Music Assistant server. (The 1.2.0 token header only covered the REST side; the actual login happens over the WebSocket, which is now handled.)
+- New internal setup: alongside nginx a small **Python bridge** handles `/ws` only, authenticating the MA connection with the token up front and relaying everything else transparently.
+
+**Required**
+- Set the **Music Assistant token** (a long-lived token from your MA profile settings). Without a token the app falls back to the regular ingress login, which does not work for a standalone server.
+
+**Fallback**
+- The previous, pure nginx proxy (v1.2.0) lives on the [`legacy-nginx-proxy`](https://github.com/Sarnog/Music-Assistant-Proxy/tree/legacy-nginx-proxy) branch. If Music Assistant fixes the ingress issue upstream, you can switch back to it.
+
+**How to apply:** update to 2.0.0, make sure your token is set, restart the app and refresh your browser (Ctrl+F5).
+
 ## 1.2.0 – 2026-07-24
 
 ### 🇳🇱 Nederlands
