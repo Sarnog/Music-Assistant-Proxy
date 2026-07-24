@@ -3,12 +3,16 @@ FROM ${BUILD_FROM}
 
 RUN apk add --no-cache \
     nginx \
-    gettext
+    gettext \
+    python3 \
+    py3-aiohttp
 
 COPY rootfs /
 
 RUN chmod a+x /etc/services.d/nginx/run \
-    && chmod a+x /etc/services.d/nginx/finish
+    && chmod a+x /etc/services.d/nginx/finish \
+    && chmod a+x /etc/services.d/ws-bridge/run \
+    && chmod a+x /etc/services.d/ws-bridge/finish
 
 LABEL \
     io.hass.name="Music Assistant Proxy" \

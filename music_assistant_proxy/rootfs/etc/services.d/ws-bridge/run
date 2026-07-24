@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bashio
+
+# Config values, shared with the nginx service.
+export SERVER_HOST=$(bashio::config 'server_host')
+export SERVER_PORT=$(bashio::config 'server_port')
+
+# The long-lived Music Assistant token used to authenticate the WebSocket.
+if bashio::config.has_value 'ma_token'; then
+    export MA_TOKEN=$(bashio::config 'ma_token')
+fi
+
+bashio::log.info "Starting Music Assistant WebSocket auth bridge..."
+exec python3 /usr/bin/ws_bridge.py
