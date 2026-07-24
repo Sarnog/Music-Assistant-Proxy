@@ -12,8 +12,6 @@
     "i386"
   ],
   "init": false,
-  "hassio_api": true,
-  "hassio_role": "default",
   "webui": "http://[HOST]:[PORT:8095]",
   "ingress": true,
   "ingress_port": 8095,
@@ -39,14 +37,6 @@
   "startup": "application",
   "boot": "auto",
   "advanced": true,
-  "uart": false,
-  "audio": false,
-  "video": false,
-  "gpio": false,
-  "privileged": [],
   "apparmor": true,
-  "map": [],
-  "environment": {},
-  "timeout": 30,
-  "log_level": "info"
+  "timeout": 30
 }
