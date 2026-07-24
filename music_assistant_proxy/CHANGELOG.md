@@ -3,6 +3,28 @@
 Alle noemenswaardige wijzigingen aan deze app worden hier bijgehouden. /
 All notable changes to this app are documented here.
 
+## 1.2.0 – 2026-07-24
+
+### 🇳🇱 Nederlands
+
+**Toegevoegd**
+- Nieuwe optionele optie **`ma_token`** (Music Assistant token). Maak in Music Assistant onder je **profielinstellingen** een langlevende token aan en vul die in bij de app. De app stuurt die token dan bij elke verbinding mee (`Authorization: Bearer`), zodat Music Assistant je automatisch herkent en er achter Home Assistant Ingress **geen loginscherm meer verschijnt**. Zonder token werkt de app precies als voorheen.
+
+**Verwijderd**
+- De ingress-header-doorgifte uit 1.1.0 (`X-Ingress-Path`, `X-Remote-User-*`) is verwijderd. Die had geen effect: Music Assistant herkent een ingress-verbinding aan de socket waarop die binnenkomt, niet aan deze headers. Token-authenticatie (zie hierboven) is de door Music Assistant bedoelde manier voor een reverse proxy.
+
+**Toepassen:** herbouw/herstart de app, vul je token in en ververs je browser (Ctrl+F5).
+
+### 🇬🇧 English
+
+**Added**
+- New optional **`ma_token`** option (Music Assistant token). Create a long-lived token in Music Assistant under your **profile settings** and paste it into the app. The app then sends that token on every connection (`Authorization: Bearer`), so Music Assistant recognises you automatically and **no login screen appears** behind Home Assistant Ingress. Without a token the app behaves exactly as before.
+
+**Removed**
+- The 1.1.0 ingress-header forwarding (`X-Ingress-Path`, `X-Remote-User-*`) has been removed. It had no effect: Music Assistant detects an ingress connection by the socket it arrives on, not by these headers. Token authentication (see above) is Music Assistant's intended method for a reverse proxy.
+
+**How to apply:** rebuild/restart the app, enter your token and refresh your browser (Ctrl+F5).
+
 ## 1.1.0 – 2026-07-24
 
 ### 🇳🇱 Nederlands
