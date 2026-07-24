@@ -31,7 +31,8 @@
   },
   "schema": {
     "server_host": "str",
-    "server_port": "port"
+    "server_port": "port",
+    "ma_token": "password?"
   },
   "stage": "stable",
   "startup": "application",

@@ -4,12 +4,23 @@
 export SERVER_HOST=$(bashio::config 'server_host')
 export SERVER_PORT=$(bashio::config 'server_port')
 
+# Optional long-lived Music Assistant token. When set, the proxy authenticates
+# every request with it (Authorization: Bearer ...), so Music Assistant does not
+# show its own login screen behind Home Assistant Ingress.
+if bashio::config.has_value 'ma_token'; then
+    export MA_AUTH_VALUE="Bearer $(bashio::config 'ma_token')"
+    bashio::log.info "Music Assistant token set: automatic authentication enabled."
+else
+    export MA_AUTH_VALUE=""
+    bashio::log.info "No Music Assistant token set: Music Assistant will ask for a login."
+fi
+
 bashio::log.info "Starting Music Assistant Proxy..."
 bashio::log.info "Server Host: ${SERVER_HOST}"
 bashio::log.info "Server Port: ${SERVER_PORT}"
 
 # Generate nginx config from template
-envsubst '$SERVER_HOST $SERVER_PORT' < /etc/nginx/nginx.conf > /tmp/nginx.conf
+envsubst '$SERVER_HOST $SERVER_PORT $MA_AUTH_VALUE' < /etc/nginx/nginx.conf > /tmp/nginx.conf
 mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 # Create required directories
